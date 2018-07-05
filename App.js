@@ -1,11 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { 
+  Platform,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+import TodoInput from './src/component/TodoInput';
 
-export default class App extends React.Component {
+export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <Text>TESTaaa</Text>
+        <View style={styles.main}>
+          <TodoInput />
+        </View>
       </View>
     );
   }
@@ -14,8 +22,13 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#333',
+    paddingTop: 40,
     alignItems: 'center',
-    justifyContent: 'center',
   },
+  main: {
+    flex: 1,
+    maxWidth: 400,
+    alignItems: 'center',
+  }
 });
