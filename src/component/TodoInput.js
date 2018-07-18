@@ -33,6 +33,16 @@ const styles = StyleSheet.create({
 });
 
 export default class TodoInput extends Component {
+    constructor(props) {
+        super(props);
+
+        this.ref = {};
+    } 
+
+    _onPress = () => {
+        this.props.onPress(this.ref._lastNativeText);
+        this.ref.setNativeProps({ text: '' });
+    }
     render() {
         const {
             onPress,
@@ -41,10 +51,13 @@ export default class TodoInput extends Component {
             <View style={styles.container}>
                 <TextInput
                  style={styles.textInput}
-                 onChangeText={text => onPress(text)}
+                 ref={(ref) => { this.ref = ref; }}
                  />
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>追加</Text>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress ={this._onPress}
+                >
+                <Text style={styles.buttonText}>追加</Text>
                 </TouchableOpacity>
             </View>
         );
